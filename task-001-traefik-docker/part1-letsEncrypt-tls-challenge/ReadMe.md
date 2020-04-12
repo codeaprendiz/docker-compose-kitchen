@@ -69,7 +69,8 @@ time="2020-04-12T16:55:50Z" level=debug msg="Adding certificate for domain(s) te
 
 - Now visit the domain to check if certificate is being generated
 
-![](.ReadMe_images/https-browser-verification.png)
+![](.ReadMe_images/https-browser-verification-cert.png)
+
 
 
 

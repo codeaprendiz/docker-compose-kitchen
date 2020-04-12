@@ -40,7 +40,7 @@ Creating simple-service ... done
 - You can check the logs and verify if the cert is downloaded
 
 ```bash
-# docker logs traefik
+$ docker logs traefik
 ...
 time="2020-04-12T16:55:37Z" level=debug msg="No default certificate, generating one"
 time="2020-04-12T16:55:37Z" level=debug msg="Try to challenge certificate for domain [testacme.gotdns.ch] found in HostSNI rule" providerName=myresolver.acme rule="Host(`testacme.gotdns.ch`)" routerName=whoami@docker

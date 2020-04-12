@@ -67,9 +67,26 @@ time="2020-04-12T16:55:50Z" level=debug msg="Adding certificate for domain(s) te
 ...
 ```
 
+- Also note that the following directory will be created after the execution of command
+```bash
+# ls
+docker-compose.yaml  letsencrypt
+# ls letsencrypt/
+acme.json
+# cat letsencrypt/acme.json | grep -A 5 "Certificates"
+    "Certificates": [
+      {
+        "domain": {
+          "main": "testacme.gotdns.ch"
+        },
+        "certificate": "...
+...
+```
+
 - Now visit the domain to check if certificate is being generated
 
 ![](.ReadMe_images/https-browser-verification-cert.png)
+
 
 
 

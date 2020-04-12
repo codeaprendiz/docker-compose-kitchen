@@ -39,8 +39,6 @@ Creating simple-service ... done
 
 - You can check the logs and verify if the cert is downloaded
 
-
-- Now visit the domain to check if certificate is being generated
 ```bash
 # docker logs traefik
 ...
@@ -68,6 +66,8 @@ time="2020-04-12T16:55:50Z" level=debug msg="Configuration received from provide
 time="2020-04-12T16:55:50Z" level=debug msg="Adding certificate for domain(s) testacme.gotdns.ch"
 ...
 ```
+
+- Now visit the domain to check if certificate is being generated
 
 ![](.ReadMe_images/https-browser-verification.png)
 

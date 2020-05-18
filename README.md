@@ -10,3 +10,4 @@ docker-compose-kitchen
     - [letsEncrypt-http-challenge](task-001-traefik/part2-letsEncrypt-http-challenge)
 - [task-002-datadog](task-002-datadog)
 - [task-003-elastic-search](task-003-elastic-search/7.7)
+    - [backup-restore-local-with-sample-data](task-003-elastic-search/7.7)

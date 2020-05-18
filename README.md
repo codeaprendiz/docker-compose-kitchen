@@ -5,9 +5,11 @@ docker-compose-kitchen
 - [commands]()
 
 ## gcp
-- [task-001-traefik](task-001-traefik)
-    - [letsEncrypt-tls-challenge](task-001-traefik/part1-letsEncrypt-tls-challenge)
-    - [letsEncrypt-http-challenge](task-001-traefik/part2-letsEncrypt-http-challenge)
-- [task-002-datadog](task-002-datadog)
-- [task-003-elastic-search](task-003-elastic-search/7.7)
-    - [backup-restore-local-with-sample-data](task-003-elastic-search/7.7)
+- [task-001-traefik](gcp/task-001-traefik)
+    - [letsEncrypt-tls-challenge](gcp/task-001-traefik/part1-letsEncrypt-tls-challenge)
+    - [letsEncrypt-http-challenge](gcp/task-001-traefik/part2-letsEncrypt-http-challenge)
+- [task-002-datadog](gcp/task-002-datadog)
+
+## local
+- [task-003-elastic-search](local/task-001-elastic-search/7.7)
+    - [backup-restore-local-with-sample-data](local/task-001-elastic-search/7.7)

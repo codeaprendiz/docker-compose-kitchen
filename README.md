@@ -13,3 +13,4 @@ docker-compose-kitchen
 ## local
 - [task-003-elastic-search](local/task-001-elastic-search/7.7)
     - [backup-restore-local-with-sample-data](local/task-001-elastic-search/7.7/backup-restore-local-with-sample-data)
+    - [elastic-search-kibana](local/task-001-elastic-search/elastic-search-kibana)

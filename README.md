@@ -21,6 +21,7 @@ docker-compose-kitchen
 - [task-006: To implement logstash docker-compose example](local/task-006-logstash)
 - [task-008: To get monitoring dashboard for mongodb using mongodb, metricbeat (custom image), elasticsearch, kibana docker-compose](local/task-008-mongodb-metricbeat-elasticsearch-kibana)
 - [task-009: To get monitoring dashboard for NATS-Streaming using NATS-Streaming, metricbeat (custom image), elasticsearch, kibana docker-compose](local/task-009-natsStreaming-metricbeat-elasticsearch-kibana)
+- [task-010: To get monitoring dashboard for MYSQL using MYSQL, metricbeat (custom image), elasticsearch, kibana docker-compose](local/task-009-natsStreaming-metricbeat-elasticsearch-kibana)
 
 
 ### Prometheus

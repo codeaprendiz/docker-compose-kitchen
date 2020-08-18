@@ -1,21 +1,14 @@
 metricbeat.modules:
 
-#------------------------------- System Module -------------------------------
-- module: system
-  metricsets: ["cpu", "load", "filesystem", "fsstat", "memory", "network", "process", "core", "diskio", "socket"]
-  period: 5s
+#------------------------------- MySQL Module -------------------------------
+- module: mysql
   enabled: true
-  processes: ['.*']
-
-  cpu.metrics:  ["percentages"]
-  core.metrics: ["percentages"]
-
-#------------------------------- Docker Module -------------------------------
-- module: docker
-  metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
-  hosts: ["unix:///var/run/docker.sock"]
-  enabled: true
+  metricsets: ["status"]
   period: 5s
+  hosts: ["tcp(mysql:3306)/"]
+  username: root
+  password: root
+
 
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:

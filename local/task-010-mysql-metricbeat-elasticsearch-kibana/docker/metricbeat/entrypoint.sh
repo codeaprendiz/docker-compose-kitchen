@@ -33,6 +33,7 @@ wait_all_hosts
 #echo "Cluster is YELLOW. Fine ! (But you could maybe try to have it GREEN ;))"
 #echo ""
 
+
 ## to wait to http://kibana:5601/api/status to be up
 sleep 60
 

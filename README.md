@@ -27,4 +27,7 @@ docker-compose-kitchen
 ### Prometheus
 - [task-007: To send alerts to slack using prometheus, blackboxexporter, alertmanager docker-compose](local/task-007-prometheus-blackboxexporter-alertmanager)
 
-Testing Prometheus alertmanager for the sending alerts to slack
+
+### Nginx
+
+- [task-011: To test whether the certs (*.domain.com) are valid by using nginx](local/task-011-nginx-https-domain-test)

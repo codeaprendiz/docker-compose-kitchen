@@ -31,4 +31,8 @@ docker-compose-kitchen
 ### Nginx
 
 - [task-011: To test whether the certs (*.domain.com) are valid by using nginx](gcp/task-011-nginx-https-domain-test)
+
+
+### Caddy
 - [task-012: To test whether the certs (*.domain.com) are valid by using caddy](local-mac/task-012-caddy-https-domain-test-with-custom-certs)
+- [task-013: To download certs for *.domain.com using caddy and https-acme and save those certs on host](local-mac/task-013-caddy-https-acme-and-save-certs)

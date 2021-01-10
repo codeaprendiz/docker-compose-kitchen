@@ -37,3 +37,7 @@ docker-compose-kitchen
 - [task-012: To test whether the certs (*.domain.com) are valid by using caddy](local-mac/task-012-caddy-https-domain-test-with-custom-certs)
 - [task-013: To download certs for *.domain.com using caddy and https-acme and save those certs on host](local-mac/task-013-caddy-https-acme-and-save-certs)
 - [task-014: To reverse-proxy nginx-home using caddy](local-mac/task-014-reverse-proxy-nginx-home-using-caddy)
+
+
+### Basics
+- [task-015: To set the memory and cpu limit used by contianer](local-mac/task-015-mem-and-cpu-limit-nginx-container)

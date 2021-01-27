@@ -1,6 +1,51 @@
 ## We will try to get ACME certs for test.domain.com and docker-caddy server. 
 
+
+### Directory structure
+
+```bash
+$ tree local-mac/task-013-caddy-https-acme-and-save-certs          
+local-mac/task-013-caddy-https-acme-and-save-certs
+├── Caddyfile
+├── ReadMe.md
+└── docker-compose.yml
+```
+
+- docker-compose.yaml
+
+```bash
+version: "3.7"
+
+services:
+  caddy:
+    image: caddy:2.2.1
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/data:/data/caddy
+    networks:
+      - host
+volumes:
+  data01:
+    driver: local
+networks:
+  host:
+```
+
+- Caddyfile
+
+```bash
+test.domain.com:443 {
+    root * /usr/share/caddy
+    file_server
+}
+```
+
 - Ensure that you are logged into the server test.domain.com (33.455.23.67)
+
 ```bash
 $ nslookup test.domain.com
 Server:         34.42.23.20
@@ -15,12 +60,14 @@ Address: 33.455.23.67
 
 - Ensure that the following `data` are present. Here we will store the certificates on the host so that on restarting it caddy server does not do the 
 ACME challenge again. 
+
 ```bash
 mkdir data
 ```
 
 
 - Run the docker-compose file. (When the data director is not mounted | When the data directory is mounted and we are running for the first time)
+
 ```bash
 $ docker-compose up
 Creating network "root_default" with the default driver
@@ -60,6 +107,7 @@ caddy_1  | {"level":"info","ts":1609757634.994378,"logger":"tls.obtain","msg":"r
 ```
 
 - After saving the certificates we will get the following logs. When the data directory is mounted and we are running for second/third... time
+
 ```bash
 $ docker-compose up
 Creating network "root_host" with the default driver
@@ -77,6 +125,7 @@ caddy_1  | {"level":"info","ts":1609768981.060194,"msg":"serving initial configu
 ```
 
 - TIP: to find the location of the certificates inside the docker-caddy container, login to the container and run the following command
+
 ```bash]
 / # pwd
 /
@@ -86,6 +135,7 @@ caddy_1  | {"level":"info","ts":1609768981.060194,"msg":"serving initial configu
 ```
 
 - Once the certificates are generated you will see the following in the data directory
+
 ```bash
 $ ls data/certificates/acme-v02.api.letsencrypt.org-directory/test.domain.com
 test.domain.com.crt  test.domain.com.json  test.domain.com.key

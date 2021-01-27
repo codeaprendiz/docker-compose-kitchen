@@ -100,6 +100,7 @@ path.repo: ["/var/elasticsearch-backup"]
 ### Directory creation 
 
 - Empty the data and elasticsearch-backup dirs. Create if not present
+
 ```bash
 $ rm -rf data/*
 $ rm -rf elasticsearch-backup/*
@@ -135,11 +136,13 @@ $ curl -X PUT "http://localhost:9200/_snapshot/my_backup?pretty" -H 'Content-Typ
 ### Get Info
 
 - Get info about indices
+
 ```bash
 $ curl -X GET "localhost:9200/_cat/indices?v&pretty"
 ```
 
 - Get info about repo
+
 ```bash
 $ curl -X GET "http://localhost:9200/_snapshot/my_backup"
 {"my_backup":{"type":"fs","settings":{"location":"/var/elasticsearch-backup"}}}
@@ -159,6 +162,7 @@ curl -O https://download.elastic.co/demos/kibana/gettingstarted/8.x/logs.jsonl.g
 
 
 - Set up mapping shakespeare
+
 ```bash
 curl -X PUT "localhost:9200/shakespeare?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -179,6 +183,7 @@ curl -X PUT "localhost:9200/shakespeare?pretty" -H 'Content-Type: application/js
 
 
 - set up mapping logs
+
 ```
 curl -X PUT "localhost:9200/logstash-2015.05.18?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -240,6 +245,7 @@ curl -X PUT "localhost:9200/logstash-2015.05.20?pretty" -H 'Content-Type: applic
 ### Load the dataset
 
 - accounts.json
+
 ```bash
 $ ls accounts.json
 accounts.json
@@ -306,6 +312,7 @@ $ curl -X GET "http://localhost:9200/shakespeare/_mapping"
 ### Taking Snapshots
 
 - Taking a snapshot
+
 ```bash
 curl -X PUT -H "Content-Type: application/json" -d @snapshotsetting.json "http://localhost:9200/_snapshot/my_backup/finalsnap?wait_for_completion=true"
 {"snapshot":{"snapshot":"finalsnap","uuid":"2xntfpUJSACZDZlf2zmgFg","version_id":7070099,"version":"7.7.0","indices":["logstash-2015.05.20","logstash-2015.05.19","logstash-2015.05.18","bank","shakespeare"],"include_global_state":false,"state":"SUCCESS","start_time":"2020-05-18T13:38:01.870Z","start_time_in_millis":1589809081870,"end_time":"2020-05-18T13:38:03.875Z","end_time_in_millis":1589809083875,"duration_in_millis":2005,"failures":[],"shards":{"total":5,"failed":0,"successful":5}}}
@@ -314,6 +321,7 @@ curl -X PUT -H "Content-Type: application/json" -d @snapshotsetting.json "http:/
 
 
 - Request your snapshot 
+
 ```bash
 $ curl -X GET  "http://localhost:9200/_snapshot/my_backup/finalsnap"
 {"snapshots":[{"snapshot":"finalsnap","uuid":"2xntfpUJSACZDZlf2zmgFg","version_id":7070099,"version":"7.7.0","indices":["logstash-2015.05.20","logstash-2015.05.19","logstash-2015.05.18","bank","shakespeare"],"include_global_state":false,"state":"SUCCESS","start_time":"2020-05-18T13:38:01.870Z","start_time_in_millis":1589809081870,"end_time":"2020-05-18T13:38:03.875Z","end_time_in_millis":1589809083875,"duration_in_millis":2005,"failures":[],"shards":{"total":5,"failed":0,"successful":5}}]}
@@ -321,12 +329,14 @@ $ curl -X GET  "http://localhost:9200/_snapshot/my_backup/finalsnap"
 
 
 - To check the status of snapshot
+
 ```bash
 $ curl -X GET "http://localhost:9200/_snapshot/_status"                
 {"snapshots":[]}
 ```
 
 - To check all the snapshots
+
 ```bash
 $ curl -X GET "http://localhost:9200/_snapshot/_all"   
 {"my_backup":{"type":"fs","settings":{"compress":"true","location":"/var/elasticsearch-backup"}}}
@@ -350,6 +360,7 @@ $ curl -X GET "http://localhost:9200/_snapshot/my_backup/_all"
 - Start the container again
 
 - state before
+
 ```bash
 $ curl -X GET "localhost:9200/_cat/indices?v&pretty"
 health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
@@ -358,6 +369,7 @@ health status index uuid pri rep docs.count docs.deleted store.size pri.store.si
 - register the repo again
 
 - To restore a snapshot
+
 ```bash
 $ curl -X POST -H "Content-Type: application/json" -d @restoresnapshot.json "http://localhost:9200/_snapshot/my_backup/finalsnap/_restore"
 {"accepted":true}

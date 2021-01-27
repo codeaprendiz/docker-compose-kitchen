@@ -1,6 +1,7 @@
 ### To test the certificates are working
 
 - nslookup to domain
+
 ```bash
 $ nslookup server.domain.com
 Server:         127.0.0.53

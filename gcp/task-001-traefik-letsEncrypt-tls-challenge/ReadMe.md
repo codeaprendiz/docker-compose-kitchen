@@ -5,13 +5,51 @@ Steps
 
 - Create a VM on any cloud provider (like google cloud)
 
-![](.ReadMe_images/vm-created-gc.png)
+![](./../../images/task-001-traefik-letsEncrypt-tls-challenge/vm-created-gc.png)
 
 - Install docker-compose
 
 - Create a DNS record like [here](https://www.noip.com/) and assing it to the public ip of the VM created.
 
-![](.ReadMe_images/dns-entry-for-vm.png)
+![](./../../images/task-001-traefik-letsEncrypt-tls-challenge/dns-entry-for-vm.png)
+
+
+- The following is the `docker-compose` file
+```yaml
+version: "3.3"
+
+services:
+
+  traefik:
+    image: "traefik:v2.2"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=ankit.codeaprendiz@company.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  whoami:
+    image: "containous/whoami"
+    container_name: "simple-service"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`testacme.gotdns.ch`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+```
+
 
 - Finally run the following command to start the containers
 
@@ -85,7 +123,7 @@ acme.json
 
 - Now visit the domain to check if certificate is being generated
 
-![](.ReadMe_images/https-browser-verification-cert.png)
+![](./../../images/task-001-traefik-letsEncrypt-tls-challenge/https-browser-verification-cert.png)
 
 
 

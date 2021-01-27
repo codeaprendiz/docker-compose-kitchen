@@ -2,7 +2,7 @@
 
 To get NATS-Streaming Dashboard on Kibana using NATS-Streaming, Elasticsearch, Kibana, Metricbeat (custom image) in docker-compose
 
-## Dir structure
+#### Dir structure
 
 ```bash
 local-mac/task-009-natsStreaming-metricbeat-elasticsearch-kibana

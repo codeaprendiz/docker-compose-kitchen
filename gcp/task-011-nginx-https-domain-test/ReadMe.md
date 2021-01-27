@@ -29,7 +29,7 @@ services:
 
 - The following is `nginx.conf` file
 
-```nginx configuration
+```bash
 server {
     listen 443 ssl;
     server_name  prod.domain.com;

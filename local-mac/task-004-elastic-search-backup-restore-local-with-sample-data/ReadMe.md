@@ -7,6 +7,85 @@
     - Check out the next pages as well
 - [Load Data](https://www.elastic.co/guide/en/kibana/7.7/tutorial-build-dashboard.html#load-dataset)
 
+
+### Dir structure
+
+```bash
+$ tree local-mac/task-004-elastic-search-backup-restore-local-with-sample-data 
+local-mac/task-004-elastic-search-backup-restore-local-with-sample-data
+├── ReadMe.md
+├── docker-compose.yml
+├── elasticsearch.yml
+├── restoresnapshot.json
+└── snapshotsetting.json
+```
+
+- docker-compose.yaml
+
+```yaml
+version: "3.7"
+services:
+  elasticsearch_service:
+    restart: unless-stopped
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: elasticsearch_local
+    environment:
+      xpack.security.enabled: 'false'
+      xpack.monitoring.enabled: 'false'
+      xpack.graph.enabled: 'false'
+      xpack.watcher.enabled: 'false'
+      discovery.type: 'single-node'
+      bootstrap.memory_lock: 'true'
+      indices.memory.index_buffer_size: '30%'
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data:/usr/share/elasticsearch/data
+      - ./elasticsearch-backup:/var/elasticsearch-backup
+    ports:
+      - 9200:9200
+      - 9300:9300
+#    network_mode: host
+```
+
+- elasticsearch.yaml
+
+```yaml
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+path.repo: ["/var/elasticsearch-backup"]
+```
+
+- restoresnapshot.json
+
+```json
+{
+  "indices": "bank*,shakespeare*,logstash*",
+  "ignore_unavailable": true,
+  "include_global_state": false,
+  "include_aliases": false,
+  "partial": false,
+  "rename_pattern": "kibana(.+)",
+  "rename_replacement": "restored-kibana$1",
+  "index_settings": {
+    "index.blocks.read_only": false
+  },
+  "ignore_index_settings": [
+    "index.refresh_interval"
+  ]
+}
+```
+
+- snapshotsetting.json
+
+```json
+{
+  "indices": "bank*,shakespeare*,logstash*",
+  "ignore_unavailable": true,
+  "include_global_state": false,
+  "partial": false
+}
+```
+
 ### Thought Process
 
 - Create `data` and `elasticsearch-backup` dirs. 
@@ -295,7 +374,7 @@ yellow open   logstash-2015.05.19 ytH8HF_GRnuu6vV3B4apnw   1   1       4624     
 
 ```
 
-## Index Mapping after restore
+### Index Mapping after restore
 
 ```bash
 $ curl -X GET "http://localhost:9200/bank/_mapping"

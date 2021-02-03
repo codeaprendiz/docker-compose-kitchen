@@ -20,7 +20,7 @@ Datadog | [To implement datadog docker-compose example](gcp/task-003-datadog)
 
 Domain | Tasks | 
 ---    | --- | 
-Set Memory and CPU Limit by container | [task-015: To set the memory and cpu limit used by contianer](local-mac/task-015-mem-and-cpu-limit-nginx-container) | 
+Set Memory and CPU Limit by container | [To set the memory and cpu limit used by contianer](local-mac/task-015-mem-and-cpu-limit-nginx-container) | 
 ElasticSearch Backup And Restore Sample Data | [To implement elasticsearch backup & restore on local with sample data](local-mac/task-004-elastic-search-backup-restore-local-with-sample-data) |
 ElasticSearch Single Node and Kibana | [To implement elastic-search and kibana using single docker-compose](local-mac/task-005-elastic-search-kibana) |
 Logstash Example | [To implement logstash docker-compose example](local-mac/task-006-logstash) |
